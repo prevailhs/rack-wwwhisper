@@ -103,7 +103,7 @@ class WWWhisper
 
     # Requests to /@@WWWHISPER_PREFIX/auth/ should not be authorized,
     # every visitor can access login pages.
-    return dispatch(req) if req.path =~ %r{^#{wwwhisper_path('auth')}}
+    return dispatch(req) if (req.path =~ %r{^#{wwwhisper_path('auth')}} || req.path =~ /\/assets\//)
 
     debug req, "sending auth request for #{req.path}"
     auth_resp = auth_request(req)
